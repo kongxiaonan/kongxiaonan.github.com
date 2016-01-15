@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	p{ width:200px; font-size:30px; font-weight:bold; margin:200px auto; text-shadow:0px 0px 0px #000;}
+	div{ height:100px; width:100px; border-radius:50%; background:#FC6; position:absolute;left:0;top:0; box-shadow:0px 0px 30px #FC6;}
+</style>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',function(){
+	var oP = document.querySelector('p');
+	var oD = document.querySelector('div');	
+	document.addEventListener('mousemove',function(ev){
+		var x1 = ev.pageX;
+		var y1 = ev.pageY;
+		oD.style.left = ev.pageX-oD.offsetWidth/2+'px';
+		oD.style.top = ev.pageY-oD.offsetHeight/2+'px';
+		var x2 = oP.offsetLeft+oP.offsetWidth/2;
+		var y2 = oP.offsetTop+oP.offsetHeight/2;
+		var disx = x2-x1;
+		var disy = y2-y1;
+		var dis = Math.sqrt(disx*disx+disy*disy)/40;
+		oP.style.textShadow = disx/2+'px '+disy/2+'px '+dis+'px #000';
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+<div></div>
+<p>我说你好</p>
+</body>
+</html>
