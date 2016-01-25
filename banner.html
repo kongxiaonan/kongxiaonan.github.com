@@ -7,9 +7,12 @@
 <style type="text/css">
 *{ margin:0; padding:0; list-style:none;}
 html{ font-size:20px;}
-.box{ height:6rem; width:16rem; overflow:hidden;}
+.box{ height:6rem; width:16rem; overflow:hidden; position:relative;}
 .box ul{height:6rem; width:64rem;}
 .box ul li{height:6rem; width:16rem; float:left;}
+.box ol{height:0.5rem; width:4rem; position:absolute; left:50%; bottom:0.5rem; margin-left:-2rem}
+.box ol li{height:0.5rem; width:0.5rem; float:left; margin:0 0.25rem; border-radius:50%; overflow:hidden; background:#ccc;}
+.box ol li.cur{background:#C03;}
 </style>
 <script type="text/javascript">
 (function(){
@@ -22,6 +25,8 @@ document.addEventListener('DOMContentLoaded',function(){
 	var oBox = document.querySelector('.box');
 	var oUl = document.querySelector('.box ul');
 	var aLi = oUl.children;
+	var oOl = document.querySelector('.box ol');
+	var aLio = oOl.children;
 	var x = 0;
 	var r = 100;
 	var iNow = 0;
@@ -55,7 +60,11 @@ document.addEventListener('DOMContentLoaded',function(){
 				x = iNow*aLi[0].offsetWidth;
 				oUl.style.WebkitTransform='translate3d('+x+'px,0px,0px)';
 			}
-			document.title = iNow;	
+			document.title = iNow;
+			for(var i=0;i<aLio.length;i++){
+				aLio[i].className = '';
+			}
+			aLio[iNow].className = 'cur';	
 		};
 		oUl.addEventListener('touchmove',fnMove,false);
 		oUl.addEventListener('touchend',fnEnd,false);	
@@ -73,6 +82,12 @@ document.addEventListener('DOMContentLoaded',function(){
 	  <li style=" background:#699;">3</li>
 	  <li style=" background:#09F;">4</li>
 	</ul>
+    <ol>
+      <li class="cur"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
 </div>
 </body>
 </html>
